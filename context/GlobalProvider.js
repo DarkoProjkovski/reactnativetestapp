@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { getCurrentUser } from "../lib/appwrite";
+import { router } from "expo-router";
 
 const GlobalContext = createContext();
 
@@ -22,15 +23,14 @@ const GlobalProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log(error);
-        
       })
       .finally(() => {
         setIsLoading(false);
       });
   }, []);
 
-  return;
-  <GlobalContext.Provider
+  return(
+    <GlobalContext.Provider
     value={{
       isLoggedIn,
       setIsLoggedIn,
@@ -40,7 +40,9 @@ const GlobalProvider = ({ children }) => {
     }}
   >
     {children}
-  </GlobalContext.Provider>;
+  </GlobalContext.Provider>
+  )
+  
 };
 
 export default GlobalProvider
